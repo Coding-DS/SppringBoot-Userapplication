@@ -47,7 +47,13 @@ public class UserDaoImplement implements UserDao {
 
     @Override
     public User getDataByEmail(String userEmail) {
-        return (User) userRepository.findAll().stream().filter(u -> u.getUserEmail().equalsIgnoreCase(userEmail));
+        User userC = null;
+        for (User u : userRepository.findAll()) {
+            if (u.getUserEmail().equalsIgnoreCase(userEmail) ){
+                userC = u ;
+            }
+        }
+        return userC;
     }
 
     @Override
